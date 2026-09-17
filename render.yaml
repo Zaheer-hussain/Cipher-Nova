@@ -1,0 +1,47 @@
+services:
+  - type: web
+    name: mailshield-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: ALLOWED_ORIGIN
+        value: https://your-vercel-domain.vercel.app
+      - key: CLERK_PUBLISHABLE_KEY
+        sync: false
+      - key: CLERK_SECRET_KEY
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        sync: false
+      - key: ENCRYPTION_KEY
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_REDIRECT_URI
+        value: https://your-render-service.onrender.com/api/mailboxes/oauth/callback
+      - key: GOOGLE_PUBSUB_TOPIC
+        sync: false
+      - key: MICROSOFT_CLIENT_ID
+        sync: false
+      - key: MICROSOFT_CLIENT_SECRET
+        sync: false
+      - key: MICROSOFT_REDIRECT_URI
+        value: https://your-render-service.onrender.com/api/mailboxes/oauth/callback
+      - key: MICROSOFT_NOTIFICATION_URL
+        value: https://your-render-service.onrender.com/api/webhooks/mailboxes/outlook
+      - key: MAILBOX_WEBHOOK_SECRET
+        sync: false
